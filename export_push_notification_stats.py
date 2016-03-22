@@ -10,6 +10,7 @@ START_DATE and END_DATE.
 import datetime
 import json
 import sys
+import time
 import urllib2
 
 
@@ -75,12 +76,21 @@ def get_message_stats():
     ])
 
   # Export report.
-  data = call_leanplum_api('exportReport', EXPORT_KEY, {
-    'startDate': START_DATE.strftime('%Y%m%d'),
-    'endDate': END_DATE.strftime('%Y%m%d'),
+  job_id = call_leanplum_api('exportReport', EXPORT_KEY, {
+    'startDate': START_DATE,
+    'endDate': END_DATE,
     'dataType': 'UserActivity',
     'eventNames': event_names
-  })['data']
+  })['jobId']
+  data = None
+  while not data:
+    results = call_leanplum_api('getExportResults', EXPORT_KEY, {
+      'jobId': job_id,
+    })
+    if results['state']['value'] != 'RUNNING':
+      data = results['data']
+      break
+    time.sleep(5)
 
   # Print CSV header.
   rows = []
