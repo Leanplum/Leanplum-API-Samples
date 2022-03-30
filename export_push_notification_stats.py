@@ -25,7 +25,7 @@ END_DATE = datetime.date.today()
 START_DATE = END_DATE - datetime.timedelta(days=7)
 
 
-API_ENDPOINT = 'https://www.leanplum.com/api'
+API_ENDPOINT = 'https://api.leanplum.com/api'
 
 
 def call_leanplum_api(action, client_key, request_json=None):

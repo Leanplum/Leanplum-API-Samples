@@ -19,8 +19,8 @@ clientKey = raw_input('Enter your clientKey: ')
 #clientKey = 'enter your clientKey as a string here'
 
 #Making the URL that will return the jobId
-urlOne = "http://www.leanplum.com/api?appId=" + appId + "&clientKey=" + clientKey + "&apiVersion=1.0.6&action=exportData&startDate=" + startDate
-#urlAlt = "http://www.leanplum.com/api?appId=" + appId + "&clientKey=" + clientKey + "&apiVersion=1.0.6&action=exportData&startDate=" + startDate + "&endDate=" + endDate + "&s3ObjectPrefix=" + s3ObjectPrefix + "&s3BucketName=" + s3BucketName +"&s3AccessKey=" + s3AccessKey + "&s3AccessId=" + s3AccessId + "&compressData=" + compressData 
+urlOne = "http://api.leanplum.com/api?appId=" + appId + "&clientKey=" + clientKey + "&apiVersion=1.0.6&action=exportData&startDate=" + startDate
+#urlAlt = "http://api.leanplum.com/api?appId=" + appId + "&clientKey=" + clientKey + "&apiVersion=1.0.6&action=exportData&startDate=" + startDate + "&endDate=" + endDate + "&s3ObjectPrefix=" + s3ObjectPrefix + "&s3BucketName=" + s3BucketName +"&s3AccessKey=" + s3AccessKey + "&s3AccessId=" + s3AccessId + "&compressData=" + compressData 
 
 print urlOne
 #Getting the jobId
@@ -31,7 +31,7 @@ fullHTML = json.loads(html)
 jobId = fullHTML['response'][0]['jobId']
 
 #Making the URL that will return the link for the data export
-urlTwo = "http://www.leanplum.com/api?appId=" + appId + "&clientKey=" + clientKey + "&apiVersion=1.0.6&action=getExportResults&jobId=" + jobId
+urlTwo = "http://api.leanplum.com/api?appId=" + appId + "&clientKey=" + clientKey + "&apiVersion=1.0.6&action=getExportResults&jobId=" + jobId
 print urlTwo
 
 loading = True
